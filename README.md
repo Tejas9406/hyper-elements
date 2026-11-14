@@ -96,9 +96,9 @@ Give Claude Code, Codex, Cursor, or another coding agent the guide:
 npx skills add hyper-elements/hyper-elements
 ```
 
-It offers two skills: `hyper-elements`, the guide for writing templates, and `email-testing`, for previewing and checking
-any email (a template or HTML from anywhere) in Outlook, Gmail and the other clients. `--skill email-testing` installs
-that one alone.
+It offers two skills: [`hyper-elements`](./skills/hyper-elements/SKILL.md), the guide for writing templates, and
+[`email-testing`](./skills/email-testing/SKILL.md), for previewing and checking any email (a template or HTML from
+anywhere) in Outlook, Gmail and the other clients. `--skill email-testing` installs that one alone.
 
 In Claude Code they're plugins too: `/plugin marketplace add hyper-elements/hyper-elements`, then
 `/plugin install email-testing@hyper-elements` or `/plugin install hyper-elements@hyper-elements`.
@@ -146,6 +146,9 @@ The same loop runs from the shell, with no script, using [`@hyper-elements/cli`]
 ## Preview and test emails in Outlook and Gmail locally
 
 `@hyper-elements/email-clients` is a free JavaScript and TypeScript library for checking existing HTML emails and previewing Outlook, Gmail and Apple Mail locally. Give it the complete HTML from MJML, React Email, an email builder, or a hand-written email. No React is required, and the email is never sent or uploaded.
+
+An agent can do all of this from the [email-testing skill](./skills/email-testing/SKILL.md): the commands, each client's
+screenshot, and what it changed.
 
 ```bash
 npm install @hyper-elements/email-clients
