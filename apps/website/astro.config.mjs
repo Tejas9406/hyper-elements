@@ -3,6 +3,7 @@ import sitemap from "@astrojs/sitemap";
 import { hyperTheme } from "./src/lib/shiki-theme.mjs";
 import playground from "./scripts/playground-integration.mjs";
 import ogCards from "./scripts/og-cards.mjs";
+import ogImage from "./scripts/og-image-integration.mjs";
 
 export default defineConfig({
   site: "https://www.hyperelements.dev",
@@ -27,9 +28,10 @@ export default defineConfig({
     "/docs/guides/templates-checks": "/docs/templates/rules",
     "/docs/guides/templates-cli": "/docs/templates/cli",
   },
-  // The playground's sandbox runtime, served beside its page (scripts/playground-integration.mjs), and the social card
-  // of each page with no image of its own (scripts/og-cards.mjs).
-  integrations: [sitemap(), playground(), ogCards()],
+  // The playground's sandbox runtime, served beside its page (scripts/playground-integration.mjs), the social card of
+  // each page with no image of its own (scripts/og-cards.mjs), and the Open Graph image generator's worker
+  // (scripts/og-image-integration.mjs).
+  integrations: [sitemap(), playground(), ogCards(), ogImage()],
   markdown: {
     shikiConfig: { theme: hyperTheme, wrap: false },
   },
