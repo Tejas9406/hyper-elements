@@ -39,6 +39,7 @@ import {
   Polygon as PolygonDefinition,
   Path as PathDefinition,
   Video as VideoDefinition,
+  Timer as TimerDefinition,
   Span as SpanDefinition,
   Table as TableDefinition,
   TableCell as TableCellDefinition,
@@ -163,6 +164,7 @@ export const Line: React.FC<LineProps> = createPrimitive(LineDefinition);
 export const Polygon: React.FC<PolygonProps> = createPrimitive(PolygonDefinition);
 export const Path: React.FC<PathProps> = createPrimitive(PathDefinition);
 export const Video: React.FC<VideoProps> = createPrimitive(VideoDefinition);
+export const Timer: React.FC<TimerProps> = createPrimitive(TimerDefinition);
 /** Markup written as it is (the builder's HTML block), given as `html` or as JSX in it. */
 export const Html = createPrimitive(HtmlDefinition) as unknown as React.FC<HtmlProps>;
 
@@ -244,6 +246,8 @@ export interface PathStyle extends StyleOf<typeof PathDefinition> {}
 export interface PathProps extends PropsOf<typeof PathDefinition, PathStyle>, Variant<"Path"> {}
 export interface VideoStyle extends StyleOf<typeof VideoDefinition> {}
 export interface VideoProps extends PropsOf<typeof VideoDefinition, VideoStyle>, Variant<"Video"> {}
+export interface TimerStyle extends StyleOf<typeof TimerDefinition> {}
+export interface TimerProps extends PropsOf<typeof TimerDefinition, TimerStyle>, Variant<"Timer"> {}
 export interface HtmlStyle extends StyleOf<typeof HtmlDefinition> {}
 export type HtmlProps = Omit<PropsOf<typeof HtmlDefinition, HtmlStyle>, "html" | "children"> &
   // As a string, or as JSX, which React writes.

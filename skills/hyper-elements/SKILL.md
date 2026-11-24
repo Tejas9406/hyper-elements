@@ -14,7 +14,7 @@ To test an email in Outlook, Gmail and other clients, a design or any HTML: the 
 ## Before you write a design
 
 - If the project's package.json doesn't list `@hyper-elements/react`, install it: `npm install @hyper-elements/react react react-dom`, or the same with the project's package manager (`pnpm add`, `yarn add`, `bun add`).
-- Once it's installed, its own guide is `node_modules/@hyper-elements/react/GUIDE.md`, written for the version installed. `grep "hyper-elements guide" node_modules/@hyper-elements/react/GUIDE.md` gives its id; this skill's is `hyper-elements guide f82a37d3`. The same id: this skill is that guide, so read on. Another id, or none: read GUIDE.md and follow it where it differs from this skill.
+- Once it's installed, its own guide is `node_modules/@hyper-elements/react/GUIDE.md`, written for the version installed. `grep "hyper-elements guide" node_modules/@hyper-elements/react/GUIDE.md` gives its id; this skill's is `hyper-elements guide 3a8407e0`. The same id: this skill is that guide, so read on. Another id, or none: read GUIDE.md and follow it where it differs from this skill.
 
 ## Templates from Unlayer Elements
 
@@ -191,6 +191,7 @@ const { image, diagnostics } = await renderImage(
 - **List**: A bulleted or numbered list of ListItems. Its markers sit in a column of their own (indent) before the items. Holds ListItem. Props: type (bullet|number), start (an integer from 0). Style: text, width, maxWidth, padding, backgroundColor, border, gap, indent, flex. Phones: text, width, maxWidth, padding, border, gap.
 - **Table**: A table of data: TableRows of TableCells. Columns take their cells' widths; the rest share what's left. Holds TableRow. Style: text, width, maxWidth, backgroundColor, border, cellPadding, rowBorder, borderCollapse (separate|collapse), flex. Phones: text, width, maxWidth, border.
 - **Video**: A YouTube or Vimeo video: its player on a page; in an email (which can't play one), its thumbnail, linked to it. Props: src* (video), thumbnail (asset), title (text). Style: width, maxWidth, flex. Phones: width, maxWidth.
+- **Timer**: A countdown timer: a dynamic countdown image, optionally linked. Props: src (asset), alt (text), href (link), title (text). Style: border, borderRadius, width, maxWidth, height, flex. Phones: border, width, maxWidth.
 - **Social**: Links to social profiles: a line of the networks' icons, each linked to its profile. Props: icons* (a list of icons, each { name, href }), iconType (circle|rounded|squared), size (an integer from 1). Style: gap, justifyContent (start|center|end), flex. Phones: gap.
 - **Menu**: A line of links (a site's sections, a footer's), onto more lines where they don't fit, with a separator between them on desktop; or links down a column. Props: items* (a list of items, each { text, href }), separator (text), layout (horizontal|vertical). Style: color, fontFamily, fontSize, fontWeight, lineHeight, letterSpacing, textTransform (none|uppercase|lowercase|capitalize), separatorColor, padding, justifyContent (start|center|end), flex. Phones: fontSize, lineHeight, letterSpacing.
 - **Html**: Markup written as it is, for what no element says (the builder's HTML block): in an email and on a page as given, nothing in it checked or escaped. A Document's PDF and a Canvas's image draw its plain text. Props: html* (text), text (text).

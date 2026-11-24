@@ -19,13 +19,14 @@ import {
   schemaVersion,
   SocialDefaults,
   TableDefaults,
+  TimerDefaults,
   VideoDefaults,
 } from "./tool-defaults";
 import { merge } from "./hide";
 import type { Values } from "./values";
 
 /** The builder's tools toDesign() writes blocks as, by their type in the design. */
-export type Tool = "heading" | "paragraph" | "button" | "image" | "divider" | "menu" | "social" | "video" | "html" | "page_break" | "table";
+export type Tool = "heading" | "paragraph" | "button" | "image" | "divider" | "menu" | "social" | "video" | "timer" | "html" | "page_break" | "table";
 
 /** Where a row or a block is hidden: the builder's `_override.mobile.hideMobile` and `_override.desktop.hideDesktop`. */
 export interface Hiding {
@@ -126,6 +127,7 @@ const TOOLS: Record<Tool, Values> = {
   menu: MenuDefaults,
   social: SocialDefaults,
   video: { ...VideoDefaults, video: { type: "youtube", videoId: "", thumbnail: "", loading: false, ...VideoDefaults.video } },
+  timer: { ...TimerDefaults, countdown: { ...TimerDefaults.countdown } },
   html: HtmlDefaults,
   page_break: { color: "#6b7280" },
   table: TableDefaults,

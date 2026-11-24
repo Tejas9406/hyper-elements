@@ -30,7 +30,7 @@ const output = (entry: string, engines: string[]): Options => ({
   external: [...(shared.external as string[]), ...engines, '@hyper-elements/react'],
 });
 
-export default defineConfig([
+const configs: Options[] = [
   { ...shared, entry: { primitives: 'src/primitives/index.ts' }, clean: true },
   { ...shared, entry: { builder: 'src/builder/index.ts' } },
   // What each root takes, and what a template holds, as data (describeElements(), inspect()): the definitions and
@@ -40,4 +40,6 @@ export default defineConfig([
   output('image', ['satori', '@resvg/resvg-js']),
   // Templates: reusable designs with guardrails. No engine; the main entry is external, as for /pdf and /image.
   output('template', ['@hyper-elements/react/inspect']),
-]);
+];
+
+export default defineConfig(process.env.TSUP_ENTRY ? configs.filter((c) => Object.keys(c.entry as Record<string, string>)[0] === process.env.TSUP_ENTRY) : configs);

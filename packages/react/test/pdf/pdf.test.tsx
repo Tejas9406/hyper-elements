@@ -41,6 +41,7 @@ import {
   Table,
   TableCell,
   TableRow,
+  Timer,
   validate,
   Video,
 } from "@hyper-elements/react";
@@ -632,6 +633,7 @@ describe("renderPdf", () => {
       Menu: [<Menu key="m" items={[{ text: "Home", href: "/" }, { text: "Blog", href: "/blog" }]} separator="|" />, "Home|Blog"],
       // Markup it can't draw: its plain text, its own or its markup's words.
       Html: [<Html key="html" html="<p>Sale <b>today</b></p><style>p{color:red}</style>" />, "Sale today"],
+      Timer: [<Timer key="tm" src={{ src: PNG_URI, width: 1, height: 1 }} alt="" />, ""],
     };
     /** The words in the pages the writer builds, in their order. */
     const words = (item: unknown): string => {

@@ -713,6 +713,20 @@ describe("email HTML", () => {
     expect(grid.diagnostics.map((d) => [d.code, d.path])).toContainEqual(["email/video-thumbnail", "root.children[1].children[1].props.thumbnail"]);
   });
 
+  it("writes a Timer as a countdown image, optionally linked", () => {
+    const timer = render(email([{ type: "Timer", props: { href: "https://example.com/sale", alt: "Flash Sale Ends Soon" } }]));
+    expect(timer.body).toContain(
+      '<a href="https://example.com/sale" style="display:inline-block;text-decoration:none"><img src="https://cdn.tools.unlayer.com/countdown/countdown.gif" alt="Flash Sale Ends Soon" width="600" border="0" style="display:block;width:100%;max-width:600px;height:auto;border:0"></a>'
+    );
+    expect(timer.text).toBe("[Flash Sale Ends Soon] (https://example.com/sale)");
+
+    const unlinked = render(email([{ type: "Timer" }]));
+    expect(unlinked.body).toContain(
+      '<img src="https://cdn.tools.unlayer.com/countdown/countdown.gif" alt="Countdown"'
+    );
+    expect(unlinked.text).toBe("[Countdown]");
+  });
+
   describe("a Layer", () => {
     const photo = { src: "https://example.com/hero.jpg", width: 1200, height: 600 };
     const layer = (children: unknown[], style: Record<string, unknown> = {}) => email([{ type: "Layer", id: "hero", style, children }]);

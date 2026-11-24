@@ -34,6 +34,7 @@ import {
   Table,
   TableCell,
   TableRow,
+  Timer,
   validate,
   Video,
 } from "@hyper-elements/react";
@@ -289,6 +290,7 @@ describe("renderImage", () => {
       Menu: [<Menu key="m" items={[{ text: "Home", href: "/" }, { text: "Blog", href: "/blog" }]} separator="|" />, "Home|Blog"],
       // Markup it can't draw: its plain text, its own or its markup's words.
       Html: [<Html key="html" html="<p>Sale <b>today</b></p><style>p{color:red}</style>" />, "Sale today"],
+      Timer: [<Timer key="tm" src={{ src: `data:image/png;base64,${Buffer.from(PNG).toString("base64")}`, width: 1, height: 1 }} alt="" />, ""],
     };
     const words = (item: unknown): string => {
       if (typeof item === "string") return item;

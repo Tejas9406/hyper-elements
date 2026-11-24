@@ -136,6 +136,7 @@ class Writer {
       case "Button":
         return { kind: "box", style: { display: "flex", justifyContent: "center", ...placed, ...this.box(node), width }, children: [keyed(this.paragraph(node, { textAlign: "center" }), `${node.path}/content`)] };
       case "Image":
+      case "Timer":
         return this.image(node, placed);
       case "Divider": {
         const line = node.style.borderTop as BorderSide | undefined;

@@ -86,6 +86,7 @@ class Writer {
           children: [{ kind: "box", style: { ...boxStyle(node), width: node.width !== null ? pt(node.width) : undefined }, children: [{ kind: "text", style: { ...textStyle(node, families), textAlign: "center" }, runs: this.runs(node) }] }],
         };
       case "Image":
+      case "Timer":
         return this.image(node, placed);
       case "Link": {
         // A Link of words (a Menu's links too) is a run of text; one holding an Image, that image.

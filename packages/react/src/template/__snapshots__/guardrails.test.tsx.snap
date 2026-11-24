@@ -23,6 +23,7 @@ exports[`slots > allow: "all" > resolves, for each root, to describeElements({ r
   "TableCell",
   "TableRow",
   "Text",
+  "Timer",
   "Video",
 ]
 `;

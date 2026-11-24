@@ -47,6 +47,7 @@ export const HIDDEN: Readonly<Record<string, readonly Hidden[]>> = {
   menu: own("style.lineHeight", "style.textTransform"),
   social: [],
   video: own("props.thumbnail", "props.title", "style.width", "style.maxWidth"),
+  timer: own("props.title", "style.maxWidth", "style.height", "style.borderRadius", "style.border"),
   html: own("props.text"),
   page_break: [],
   // A Table: its width (the builder's fills its column), how its cells' borders meet, and its line between
@@ -85,6 +86,7 @@ export const BUILDER_KEYS: Readonly<Record<string, readonly string[]>> = {
   social: [...CONTENT, "icons", "spacing", "align", "iconSize"],
   // A video's alignment isn't in @unlayer/types, but legacy reads it (and centers one without it).
   video: [...CONTENT, "video", "href", "textAlign"],
+  timer: [...CONTENT, "countdown", "width", "textAlign", "altText", "action"],
   html: [...CONTENT, "html"],
   page_break: [...CONTENT, "color"],
   table: [
@@ -108,6 +110,7 @@ export const BUILDER_PHONE_KEYS: Readonly<Record<string, readonly string[]>> = {
   menu: ["containerPadding", "fontSize", "padding", "align", "layout", "hideMobile"],
   social: ["containerPadding", "iconSize", "spacing", "align", "hideMobile"],
   video: ["containerPadding", "textAlign", "hideMobile"],
+  timer: ["containerPadding", "textAlign", "hideMobile"],
   html: ["containerPadding", "hideMobile"],
   page_break: ["hideMobile"],
   table: ["containerPadding", "hideMobile"],

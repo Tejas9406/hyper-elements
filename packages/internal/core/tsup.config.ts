@@ -18,8 +18,10 @@ const shared: Options = {
 // `@hyper-elements/react/pdf` and `/image`'s writers, and nothing else imports them. One build for each entry, so
 // each one's declarations are complete in its own files: a build with several entries shares types through a chunk
 // file (`resolve-*.d.ts`) that a package bundling these declarations (`@hyper-elements/react`) doesn't follow.
-export default defineConfig([
+const configs: Options[] = [
   { ...shared, entry: { index: 'src/index.ts' }, clean: true },
   { ...shared, entry: { pdf: 'src/pdf/index.ts' } },
   { ...shared, entry: { image: 'src/image/index.ts' } },
-]);
+];
+
+export default defineConfig(process.env.TSUP_ENTRY ? configs.filter((c) => Object.keys(c.entry as Record<string, string>)[0] === process.env.TSUP_ENTRY) : configs);

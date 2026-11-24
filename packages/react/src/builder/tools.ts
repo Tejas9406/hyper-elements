@@ -3,13 +3,14 @@
  * defaults, design.ts), what the tool has no field for as hidden properties, its place's spacing in its
  * `containerPadding` and its place's alignment in its `textAlign`.
  */
-import { linkParts, Menu as MenuDefinition, Social as SocialDefinition, videoParts, type Json, type LinkValue, type Node, type ResolvedNode } from "@hyper-elements/core";
+import { assetParts, linkParts, Menu as MenuDefinition, Social as SocialDefinition, videoParts, type Asset, type Json, type LinkValue, type Node, type ResolvedNode } from "@hyper-elements/core";
 import { block, type Block } from "./design";
 import { hiddenOf, merge } from "./hide";
 import { listJson, paragraphJson, runsHtml } from "./runs";
 import { intoMarkup } from "./paint";
 import { TABLE_FIELDS, tableValues } from "./table";
 import { withParagraphMargin } from "./text";
+import { TimerDefaults } from "./tool-defaults";
 import { builderBorder, builderFont, builderLink, cssLineHeight, cssPx, cssSides, encode, fieldLineHeight, type Values } from "./values";
 
 type Sides = { top: number; right: number; bottom: number; left: number };
@@ -252,6 +253,20 @@ export function blockTool(node: Node, path: string, parent: ResolvedNode, around
       };
       return place.put(block("video", hiding), merge(values, hiddenOf("video", node)));
     }
+    case "Timer": {
+      place.sayLeftOut("timer", node, path, ["props.src", "props.alt", "props.href", "style.width", "mobile.width"]);
+      const src = node.props?.src ? String(assetParts(node.props.src as Asset).src) : "https://cdn.tools.unlayer.com/countdown/countdown.gif";
+      const action = node.props?.href ? builderLink(node.props.href as LinkValue) : { name: "web", values: { href: "", target: "_blank" } };
+      const values: Values = {
+        countdown: { ...TimerDefaults.countdown, countdownUrl: src },
+        altText: String(node.props?.alt ?? "Countdown"),
+        action,
+        textAlign: alignIn(parent),
+        containerPadding: cssSides(around),
+        ...id,
+      };
+      return place.put(block("timer", hiding), merge(values, hiddenOf("timer", node)));
+    }
     case "Html":
       place.sayLeftOut("html", node, path, ["props.html"]);
       if (place.at("root").type === "Document") place.report.push(`${path}: an Html block: ${NOT_IN_DOCUMENTS}`);
@@ -288,7 +303,7 @@ function inText(html: string, text: Record<string, Json>): string {
   return css.length ? `<div style="${css.join(";")}">${html}</div>` : html;
 }
 
-const TOOLS: Record<string, string> = { Heading: "heading", Text: "paragraph", List: "paragraph", Button: "button", Image: "image", Link: "image", Divider: "divider", Menu: "menu", Social: "social", Video: "video", Html: "html", Table: "table" };
+const TOOLS: Record<string, string> = { Heading: "heading", Text: "paragraph", List: "paragraph", Button: "button", Image: "image", Link: "image", Divider: "divider", Menu: "menu", Social: "social", Video: "video", Timer: "timer", Html: "html", Table: "table" };
 
 /** An id the template gives a block, as the builder's (its element's id). */
 const meta = (id: string | undefined, tool = "html"): Values => (id ? { _meta: { htmlID: id, htmlClassNames: `u_content_${tool}` } } : {});

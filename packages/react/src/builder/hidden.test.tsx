@@ -6,7 +6,7 @@
 import type { Node } from "@hyper-elements/core";
 import React from "react";
 import { describe, expect, it } from "vitest";
-import { Button, Column, Document, Email, Heading, Html, Image, List, ListItem, Menu, Page, Text, Row, Section, Table, TableCell, TableRow, Video } from "../primitives";
+import { Button, Column, Document, Email, Heading, Html, Image, List, ListItem, Menu, Page, Text, Row, Section, Table, TableCell, TableRow, Timer, Video } from "../primitives";
 import { collectTemplate } from "../primitives/collect";
 import { fromDesign, toDesign } from "./index";
 import { BUILDER_KEYS, BUILDER_PHONE_KEYS, HIDDEN } from "./manifest";
@@ -64,6 +64,7 @@ const everyHidden = [
       <Image src={{ src: "https://x.test/a.png", width: 600, height: 300 }} alt="" title="A picture" style={{ maxWidth: 400, height: 150, border: "1px solid #000000", borderRadius: 8 }} />
       <Menu items={[{ text: "A", href: "https://a.test" }]} style={{ lineHeight: 2, textTransform: "uppercase" }} />
       <Video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" thumbnail="https://x.test/thumb.png" title="Launch" style={{ width: 500, maxWidth: 400 }} />
+      <Timer title="Countdown" style={{ maxWidth: 400, height: 100, borderRadius: 8, border: "1px solid #000000" }} />
       <Html html="<b>Sale</b>" text="Sale" />
     </Section>
     <Row style={{ borderRadius: 8, width: 500, minWidth: 300, maxWidth: 560, height: 200, overflow: "hidden", justifyContent: "center", flexWrap: "wrap" }}>

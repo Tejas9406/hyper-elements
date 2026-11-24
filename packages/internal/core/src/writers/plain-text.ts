@@ -106,6 +106,14 @@ export function renderText(resolved: ResolvedDocument, options: TextOptions = {}
           return [table(child)];
         case "Video":
           return [`${tidy(String(child.props.title))} (${child.props.src})`];
+        case "Timer": {
+          const alt = (child.props.alt as string | undefined)?.trim() || "Countdown";
+          if (child.props.href) {
+            const { href } = linkParts(child.props.href as LinkValue);
+            return [`[${alt}] (${href})`];
+          }
+          return [`[${alt}]`];
+        }
         case "Svg":
           return child.props.title ? [`[${tidy(String(child.props.title))}]`] : [];
         case "Row": {

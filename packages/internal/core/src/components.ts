@@ -528,6 +528,43 @@ export const Video = defineComponent({
  * Markup no component says (the builder's HTML block), written as it is. A PDF and an image can't draw markup: they
  * draw its plain text, and say so.
  */
+export const Timer = defineComponent({
+  type: "Timer",
+  label: "Timer",
+  description: "A countdown timer: a dynamic countdown image, optionally linked.",
+  categories: ["block"],
+  props: {
+    src: prop(asset(), {
+      support: WRITTEN,
+      label: "Countdown image",
+      description: "The timer GIF URL. Defaults to a standard countdown.",
+      default: "https://cdn.tools.unlayer.com/countdown/countdown.gif",
+    }),
+    alt: prop(text(), {
+      support: WRITTEN,
+      label: "Alternate text",
+      description: "Describes the timer for screen readers.",
+      default: "Countdown",
+    }),
+    href: prop(link(), {
+      support: WRITTEN,
+      label: "Link",
+      description: "Where clicking the timer takes the reader.",
+    }),
+    title: prop(text(), {
+      support: WRITTEN,
+      label: "Title",
+      description: "Shown when the mouse hovers over it.",
+    }),
+  },
+  style: { ...pick(boxStyle, "border", "borderRadius", "width", "maxWidth", "height"), ...placementStyle },
+  children: {},
+  sizing: "stretch",
+  conditionSupport: { mobile: { border: { email: { level: "none", shows: "its desktop border", source: "writer" } } } },
+  targets: { email: {}, web: {} },
+  editor: { groups: [{ title: "Timer", paths: ["props.src", "props.alt", "props.href", "props.title", "style.width", "style.maxWidth"] }] },
+});
+
 export const Html = defineComponent({
   type: "Html",
   label: "HTML",
@@ -547,7 +584,7 @@ export const Html = defineComponent({
 
 export const COMPONENTS: Readonly<Record<string, ComponentDefinition>> = Object.freeze(
   Object.fromEntries(
-    [Email, Page, Document, DocumentPage, PageBreak, PageHeader, PageFooter, PageNumber, Canvas, Svg, ...SHAPES, Section, Row, Column, Grid, Layer, Text, Heading, Span, Link, Button, Image, Divider, LineBreak, MergeTag, List, ListItem, Table, TableRow, TableCell, Video, Social, Menu, Html].map((d) => [
+    [Email, Page, Document, DocumentPage, PageBreak, PageHeader, PageFooter, PageNumber, Canvas, Svg, ...SHAPES, Section, Row, Column, Grid, Layer, Text, Heading, Span, Link, Button, Image, Divider, LineBreak, MergeTag, List, ListItem, Table, TableRow, TableCell, Video, Timer, Social, Menu, Html].map((d) => [
       d.type,
       d as unknown as ComponentDefinition,
     ])

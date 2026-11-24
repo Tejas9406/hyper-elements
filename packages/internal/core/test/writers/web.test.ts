@@ -468,6 +468,17 @@ describe("web HTML", () => {
     expect(web(page([{ type: "Video", props: { src: "https://player.vimeo.com/video/76979871" } }])).body).toContain('src="https://player.vimeo.com/video/76979871"');
   });
 
+  it("writes a Timer as a countdown image, optionally linked", () => {
+    const timer = web(page([{ type: "Timer", props: { href: "https://example.com/sale", alt: "Ends Soon" }, style: { maxWidth: 300 } }]));
+    expect(timer.body).toContain(
+      '<a href="https://example.com/sale" style="display:inline-block;text-decoration:none"><img src="https://cdn.tools.unlayer.com/countdown/countdown.gif" alt="Ends Soon" width="300" style="align-self:flex-start;width:100%;display:block;max-width:300px;height:auto"></a>'
+    );
+    const unlinked = web(page([{ type: "Timer" }]));
+    expect(unlinked.body).toContain(
+      '<img src="https://cdn.tools.unlayer.com/countdown/countdown.gif" alt="Countdown" width="600" style="display:block;max-width:100%;height:auto">'
+    );
+  });
+
   it("writes an Html block's markup as it is, in one div, with its id, classes and place in a Row on it", () => {
     const html = (extra: Record<string, unknown> = {}) => ({ type: "Html", props: { html: "<p>Sale</p>" }, ...extra });
     const { body } = web(page([html(), html({ id: "again", hidden: { mobile: true } }), { type: "Row", children: [html()] }]));

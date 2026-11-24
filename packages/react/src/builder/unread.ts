@@ -32,6 +32,7 @@ const READ: Record<string, { values: string[]; phone: string[] }> = {
   menu: { values: ["menu", "linkColor", "padding", "fontFamily", "fontWeight", "textColor", "fontSize", "letterSpacing", "layout", "align", "separator", "containerPadding"], phone: ["containerPadding", "fontSize", "hideMobile"] },
   social: { values: ["icons", "spacing", "align", "iconSize", "containerPadding"], phone: ["containerPadding", "hideMobile"] },
   video: { values: ["video", "textAlign", "containerPadding"], phone: ["containerPadding", "hideMobile"] },
+  timer: { values: ["countdown", "width", "textAlign", "altText", "action", "containerPadding"], phone: ["containerPadding", "textAlign", "hideMobile"] },
   html: { values: ["html", "containerPadding"], phone: ["containerPadding", "hideMobile"] },
   // Its columns and rows are counts of its table's; a header and a footer are printed on every page in Elements, so
   // `repeat…OnEachPage` turned off isn't read.

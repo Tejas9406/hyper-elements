@@ -6,7 +6,7 @@
  * they, and so the builder, draw), and a tool that isn't one of Elements' is left out, and said.
  */
 import { Button as ButtonDefinition, Menu as MenuDefinition, Social as SocialDefinition, videoParts, type Json, type Node } from "@hyper-elements/core";
-import { ButtonDefaults, DividerDefaults, HeadingDefaults, HtmlDefaults, ImageDefaults, MenuDefaults, ParagraphDefaults, SocialDefaults, TableDefaults, TextDefaults, VideoDefaults } from "./tool-defaults";
+import { ButtonDefaults, DividerDefaults, HeadingDefaults, HtmlDefaults, ImageDefaults, MenuDefaults, ParagraphDefaults, SocialDefaults, TableDefaults, TextDefaults, TimerDefaults, VideoDefaults } from "./tool-defaults";
 import { parseRuns } from "./read-runs";
 import { readTable } from "./read-table";
 import { color, fontWeight, font, givenId, hidden as hiddenOn, letterSpacing, px, serviceTag, sides, some, webLink, type Values } from "./read-values";
@@ -233,6 +233,22 @@ function html(values: Values, context: Context): Node[] {
   return [placed(node, sides(values.containerPadding ?? "10px"), undefined, sides(obj(obj(values._override).mobile).containerPadding), { ...hiddenOn(values), ...hidden.hidden })];
 }
 
+function timer(values: Values, context: Context): Node[] {
+  const countdown = obj(values.countdown);
+  const src = str(countdown.countdownUrl) ?? "https://cdn.tools.unlayer.com/countdown/countdown.gif";
+  const alt = str(values.altText) ?? "Countdown";
+  const hidden = readHidden("timer", "Timer", values, context.say);
+  const action = link(values.action, context.say);
+  const href = typeof action === "string" ? action : typeof (action as any)?.href === "string" ? (action as any).href : undefined;
+  const node = make("Timer", {
+    id: givenId(values),
+    props: defined({ src, alt, ...(href ? { href } : {}), ...hidden.props }),
+    style: hidden.style,
+    mobile: hidden.mobile,
+  });
+  return [placed(node, sides(values.containerPadding ?? "10px"), str(values.textAlign) ?? "center", sides(obj(obj(values._override).mobile).containerPadding), { ...hiddenOn(values), ...hidden.hidden })];
+}
+
 /** Each tool's reader. */
 const READERS = new Map<string, (values: Values, context: Context, slot?: Slot) => Node[]>([
   ["text", (values, context) => textTool("paragraph", values, context, "text")],
@@ -244,6 +260,7 @@ const READERS = new Map<string, (values: Values, context: Context, slot?: Slot) 
   ["menu", menu],
   ["social", social],
   ["video", video],
+  ["timer", timer],
   ["html", html],
   ["table", readTable],
 ]);
@@ -259,6 +276,7 @@ const DEFAULTS = new Map<string, Values>([
   ["menu", MenuDefaults],
   ["social", SocialDefaults],
   ["video", VideoDefaults],
+  ["timer", TimerDefaults],
   ["html", HtmlDefaults],
   ["table", TableDefaults],
 ]);

@@ -288,3 +288,33 @@ export const TextDefaults: Record<string, any> = {
 export const VideoDefaults: Record<string, any> = {
   video: {}
 };
+
+export const TimerDefaults: Record<string, any> = {
+  countdown: {
+    countdownUrl: "https://cdn.tools.unlayer.com/countdown/countdown.gif",
+    endTime: "",
+    backgroundColor: "#FFFFFF",
+    labelColor: "#A3A3A3",
+    labelFontFamily: "Open Sans",
+    labelFontSize: 16,
+    digitColor: "#404040",
+    digitFontFamily: "Open Sans",
+    digitFontSize: 40,
+    timezone: "America/Los_Angeles",
+    locale: null,
+    showLabels: true
+  },
+  width: {
+    autoWidth: true,
+    width: "100%"
+  },
+  textAlign: "center",
+  altText: "Countdown",
+  action: {
+    name: "web",
+    values: {
+      href: "",
+      target: "_blank"
+    }
+  }
+};

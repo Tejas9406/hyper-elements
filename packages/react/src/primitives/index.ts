@@ -40,6 +40,7 @@ export {
   Polygon,
   Path,
   Video,
+  Timer,
   Html,
 } from "./components";
 export type {
@@ -83,6 +84,7 @@ export type {
   PolygonProps,
   PathProps,
   VideoProps,
+  TimerProps,
   HtmlProps,
 } from "./components";
 export {

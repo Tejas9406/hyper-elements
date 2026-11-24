@@ -2,7 +2,7 @@
  * Type contract of the primitives (checked by `pnpm typecheck`): their props'
  * types come from the component definitions that validate them.
  */
-import { Button, Column, Email, Heading, Image, Link, Menu, Rect, Text, Row, Section, Span, Svg } from "./index";
+import { Button, Column, Email, Heading, Image, Link, Menu, Rect, Text, Row, Section, Span, Svg, Timer } from "./index";
 import type { ParagraphProps, TextProps } from "./index";
 import { BLOCK_MAP_VERSION, PLUGIN_API, prepare, render, validate } from "./index";
 import type { BlockMap, BlockMapEntry, Diagnostic, ElementsPlugin, PluginDiagnostic, PluginInput, PluginOutput, ValidateOptions } from "./index";
@@ -69,6 +69,11 @@ export const margin = <Text style={{ margin: 8 }}>x</Text>;
 
 // @ts-expect-error an Image has no text color
 export const imageColor = <Image src="https://example.com/a.png" style={{ color: "#000" }} />;
+
+export const okTimer = <Timer src="https://cdn.tools.unlayer.com/countdown/countdown.gif" alt="Ends soon" href="https://example.com" style={{ width: 300, border: "1px solid #ccc", borderRadius: 4 }} />;
+
+// @ts-expect-error a Timer has no text color
+export const timerColor = <Timer src="https://example.com/timer.gif" style={{ color: "#000" }} />;
 
 // @ts-expect-error font weights are 100 to 900 in hundreds
 export const weight = <Text style={{ fontWeight: 450 }}>x</Text>;

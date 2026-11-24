@@ -57,6 +57,7 @@ import { Span } from "./Span";
 import { Table } from "./Table";
 import { TableCell } from "./TableCell";
 import { TableRow } from "./TableRow";
+import { Timer } from "./Timer";
 import { Video } from "./Video";
 import { mobileTextOf, phoneText, type MobileText } from "./styles";
 
@@ -79,6 +80,7 @@ const BLOCKS: Record<string, Component> = {
   Table,
   TableRow,
   TableCell,
+  Timer,
   Video,
   Html: HtmlBlock,
 };
